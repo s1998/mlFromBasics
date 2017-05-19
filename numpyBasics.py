@@ -114,6 +114,10 @@ print("Min c.min() :\n", c.min())
 
 #proces column wise for axis = 0 and row wise for axis = 1
 print("Min b.min(axis = 0) :\n", b.min(axis=0))
+temp = b.sum(axis=0)
+print("Min b.sum(axis = 0) :\n", temp)
+temp = np.array([temp.tolist()]).T
+print(temp.shape)
 print("Min b.min(axis = 1) :\n", b.min(axis=1))
 
 
