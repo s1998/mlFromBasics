@@ -28,4 +28,3 @@ for iterations in range(100000):
     theta1 = tempTheta1
     print("Iteration number : ", iterations, "Cost : ", cost(predict(x,theta0, theta1), y), "Theta0 : ", theta0, "Theta1 : ", theta1 )
 
-
