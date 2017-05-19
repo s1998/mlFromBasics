@@ -1,5 +1,6 @@
 import numpy as np
 
+# The data is not normalized,
 x = np.random.random((10,1))
 y = 20*x+3
 
