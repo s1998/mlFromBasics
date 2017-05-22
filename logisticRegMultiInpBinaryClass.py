@@ -1,9 +1,10 @@
 import numpy as np
 
-xInput = np.random.random((1000, 6))
-yInput = np.random.random_integers(low=0, high=1, size=(1000, 1))
+xInput = np.random.random((1000, 2))
+yInput = np.zeros((xInput.shape[0], 1))
+yInput[np.where(xInput[:,0] + xInput[:,1]>1.0)] = 1
 
-theta = np.random.random((xInput.shape[1]+1, 1))
+theta = np.zeros((xInput.shape[1]+1, 1)) + 0.0001
 
 # yPredicted = hFunction(theta, x)
 def hFunction(theta, x):
@@ -15,8 +16,6 @@ def predict(theta, x):
 
 # cost = y*log(hFucntion(theta, x)) + (1-y)*log(1-hFunction(theta, x))
 def costFunction(y, yPredicted):
-    # return 1 - y
-    # return y * np.log(yPredicted)
     return np.sum(-(y * np.log(yPredicted) + (1 - y) * np.log(1 - yPredicted))) / y.shape[0]
 
 # Checking cost function
@@ -32,10 +31,19 @@ def gradientOfTheta(x, y, theta):
     return np.matmul(x.T, diff)/y.shape[0]
 
 # step size steeing
-alpha = 0.0001
+alpha = 0.1
 
-for iterations in range(1000000):
+print(costFunction(yInput, predict(theta, x)))
+
+for iterations in range(100000):
     tempTheta = theta - alpha * gradientOfTheta(x, yInput, theta)
     theta = tempTheta
-    print("Iteration number, cost : ",iterations, costFunction(yInput, predict(theta, x)))
-    # pass
+    if(iterations%1000 == 0):
+        print("Iteration number, cost : ",iterations, costFunction(yInput, predict(theta, x)))
+
+print(costFunction(yInput, predict(theta, x)))
+
+yPredicted = predict(theta, x)
+for i in range(yInput.shape[0]):
+    print(x[i],yInput[i], yPredicted[i])
+
