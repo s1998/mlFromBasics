@@ -112,14 +112,13 @@ print("Min a.min() :\n", a.min())
 print("Min a.min() :\n", b.min())
 print("Min c.min() :\n", c.min())
 
-#proces column wise for axis = 0 and row wise for axis = 1
+# proces column wise for axis = 0 and row wise for axis = 1
 print("Min b.min(axis = 0) :\n", b.min(axis=0))
 temp = b.sum(axis=0)
 print("Min b.sum(axis = 0) :\n", temp)
 temp = np.array([temp.tolist()]).T
 print(temp.shape)
 print("Min b.min(axis = 1) :\n", b.min(axis=1))
-
 
 print("Comparing matrices a==b: \n", a==b)
 print("Comparing matrices b==c: \n", c==b)
@@ -140,4 +139,13 @@ print("Sorted version of b row-wise : \n", tempB)
 tempB = b
 tempB.sort(axis=1)
 print("Sorting tempB = b row-wise and then printing b : \n", b)
+
+print(" proces column wise for axis = 0 and row wise for axis = 1")
+print(" b = np.array([[1,2],[2,3]]) " )
+print(" b, np.sum(b, axis = 0) is [3 3] " )
+print(" b, np.sum(b, axis = 1) is [2 4] " )
+b = np.array([[1,1],[2,2]])
+print(np.sum(b, axis = 0))
+print(np.sum(b, axis = 1))
+
 
