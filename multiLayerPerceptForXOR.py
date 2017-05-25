@@ -6,7 +6,7 @@ import numpy as np
 
 # Creating input
 xInput = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
-yInput = np.array([[1], [0], [0], [1]])
+yInput = np.array([[0], [1], [1], [0]])
 # print(xInput)
 # print(yInput)
 
@@ -53,11 +53,11 @@ theta2 = np.random.random((y1.shape[1]+1, 1)) + 2 #+ np.ones((y1.shape[1]+1, 2))
 
 for iterations in range(n_epocs):
     # get out_h1 output of hidden layer h1
-    y1 = predict(x, theta1)
+    y1 = predict(x, theta1) # (4*3)*(3*2) -> (4*2)
     # add bias to it
-    y1 = np.insert(y1, 0, 1, axis=1)
+    y1 = np.insert(y1, 0, 1, axis=1) # (4*3)
     # get output of the second layer
-    y2 = predict(y1, theta2)
+    y2 = predict(y1, theta2) # (4*3)*()
 
     # get delta for the output layer
     deltaOpLayer = getDeltaForOpLayer(y2, yInput)
@@ -104,7 +104,7 @@ for iterations in range(n_epocs):
 '''
 Results for XOR network
 xInput = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
-yInput = np.array([[1], [0], [0], [1]])
+yInput = np.array([[0], [1], [1], [0]])
 
 Some results :
 Iteration, cost, predictions : 0 4.07246596989

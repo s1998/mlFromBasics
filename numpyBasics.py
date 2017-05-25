@@ -148,4 +148,5 @@ b = np.array([[1,1],[2,2]])
 print(np.sum(b, axis = 0))
 print(np.sum(b, axis = 1))
 
+print(max(0, 1e-300))
 
