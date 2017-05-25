@@ -42,6 +42,7 @@ def gradFunction(x, y, theta):
 
 
 def getDeltaForTheta(deltaForOpLayer, input):
+    print(input.shape[0])
     return np.matmul(input.T, deltaForOpLayer) / input.shape[0]
 
 
@@ -52,8 +53,8 @@ def getDeltaForOpLayer(yPredicted, yInput):
 def getDeltaForHidLayer(deltaOfNextLayer, theta, opOfHidLayer):
     return np.multiply(np.matmul(deltaOfNextLayer, theta.T), np.multiply(opOfHidLayer, 1-opOfHidLayer))
 
-alpha = 0.1
-n_epocs = 10000
+alpha = 0.01
+n_epocs = 100000
 theta1 = np.random.random((xInput.shape[1]+1, 10)) - 0.5
 xInput = (np.insert(xInput, 0, 1, axis=1) ) / 256
 
@@ -66,15 +67,20 @@ y1 = np.matmul(xInput, theta1)
 
 acc = list()
 preCost = 0
+
 for iterations in range(n_epocs):
-    temp = iterations%1000
-    y1 = predict(xInput, theta1)
-    deltaOpLayer = getDeltaForOpLayer(y1, yInput)
+    temp = iterations%100
+
+    xInputSelected = xInput[temp*98:temp*98+600,:]
+    yInputSelected = yInput[temp*98:temp*98+600,:]
+
+    y1 = predict(xInputSelected, theta1)
+    deltaOpLayer = getDeltaForOpLayer(y1, yInputSelected)
     # print("y1", y1[0:20,:])
     # print("yInput", yInput[0:20,:])
 
     # print(deltaOpLayer[0:20,:])
-    deltaTheta1 = getDeltaForTheta(deltaOpLayer, xInput)
+    deltaTheta1 = getDeltaForTheta(deltaOpLayer, xInputSelected)
     tempTheta1 = theta1 - alpha * deltaTheta1
     theta1 = tempTheta1
     # print("theta1", theta1[0:20,:])
@@ -102,11 +108,21 @@ for i in range(len(acc)):
     print(acc[i])
 
 """
-Some stats :
+Stats :
 
+With alpha = 0.01 and running for all 60000 examples together :
 Iteration, cost, change : 1000 634136.017759 -2144.25288967
 Accuracy : 71.915
 Iteration, cost, change : 2000 664346.465893 -30210.4481347
 Accuracy : 74.2416666667
+
+With alpha = 0.01 and running for 600 examples at a time :
+Iteration, accuracy : 00000, 08.63
+Iteration, accuracy : 01000, 23.93
+Iteration, accuracy : 02000, 42.02
+Iteration, accuracy : 03000, 52.50
+Iteration, accuracy : 09000, 70.22
+Iteration, accuracy : 20000, 74.76
+Iteration, accuracy : 33000, 75.11
 
 """
