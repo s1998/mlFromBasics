@@ -1,4 +1,4 @@
-# mlFromScratch
+# mlFromBasics
 Contains following implementations : 
 
  Linear Regression - 
