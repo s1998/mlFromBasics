@@ -6,7 +6,6 @@ Contains following implementations :
   Multivariate input, single output
   Multivariate input, multivariate output
 
-To do : 
  Logistic Regression
   Multivariate input, single output
   Multivariate input, multivariate output
@@ -14,7 +13,5 @@ To do :
  Perceptron
   Single layers 
   Multiple layers
- 
- RNN 
- CNN
+
 
