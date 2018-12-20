@@ -6,11 +6,11 @@ Contains following implementations :
   Multivariate input, single output
   Multivariate input, multivariate output
 
- Logistic Regression
+ Logistic Regression -
   Multivariate input, single output
   Multivariate input, multivariate output
   
- Perceptron
+ Perceptron -
   Single layers 
   Multiple layers
 
